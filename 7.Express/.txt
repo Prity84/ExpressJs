@@ -1,0 +1,42 @@
+A query string refers to the portion of a URL that comes after the question mark (?). It consists of one or more key-value pairs separated by ampersands (&). Query strings are commonly used to send data to the server as part of an HTTP GET request.
+
+Example:
+http://example.com/search?q=expressjs&page=1&sort=asc
+
+In this URL:
+
+The base URL is http://example.com/search.
+The query string starts after the ? character: q=expressjs&page=1&sort=asc.
+It contains three key-value pairs:
+q=expressjs: The key is q, and the value is expressjs.
+page=1: The key is page, and the value is 1.
+sort=asc: The key is sort, and the value is asc.
+
+Express.js provides easy access to query string parameters through the req.query object. When a client sends a request with a query string, Express automatically parses it and makes it available in the req.query object for further processing.
+
+const express = require('express');
+const app = express();
+
+// Route handler for handling GET requests to '/search'
+app.get('/search', (req, res) => {
+    // Access query string parameters
+    const searchTerm = req.query.q; // Value of 'q' parameter
+    const page = req.query.page; // Value of 'page' parameter
+    const sort = req.query.sort; // Value of 'sort' parameter
+
+    // Do something with the query parameters
+    console.log('Search term:', searchTerm);
+    console.log('Page:', page);
+    console.log('Sort:', sort);
+
+    // Send a response
+    res.send('Received query parameters');
+});
+
+// Start the server
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
+
+
+When a client makes a request to http://localhost:3000/search?q=expressjs&page=1&sort=asc, the Express route handler for /search will extract the query string parameters (q, page, and sort) from the request and log them.
