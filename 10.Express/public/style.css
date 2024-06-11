@@ -1,0 +1,7 @@
+*{
+    background-color: aqua;
+}
+body{
+    display: grid;
+    place-content: center;
+}
